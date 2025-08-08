@@ -6,7 +6,7 @@
         content="Deformable Neural Radiance Fields creates free-viewpoint portraits (nerfies) from casually captured videos.">
   <meta name="keywords" content="Nerfies, D-NeRF, NeRF">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Nerfies: Deformable Neural Radiance Fields</title>
+  <title>PoCoDP3: Pose and Contact-Aware Visual-Tactile Policy for Contact-Rich 3D Manipulation</title>
 
   <!-- Global site tag (gtag.js) - Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-PYVRSFMDRL"></script>
@@ -128,13 +128,12 @@
             <div class="publication-links">
               <!-- PDF Link. -->
               <span class="link-block">
-                <a href="https://arxiv.org/pdf/2011.12948"
-                   class="external-link button is-normal is-rounded is-dark">
+                <button class="external-link button is-normal is-rounded is-dark">
                   <span class="icon">
-                      <i class="fas fa-file-pdf"></i>
+                    <i class="fas fa-file-pdf"></i>
                   </span>
                   <span>Paper</span>
-                </a>
+                </button>
               </span>
               <!-- <span class="link-block">
                 <a href="https://arxiv.org/abs/2011.12948"
@@ -156,7 +155,7 @@
                 </a>
               </span> -->
               <!-- Code Link. -->
-              <span class="link-block">
+              <!-- <span class="link-block">
                 <a href="https://github.com/google/nerfies"
                    class="external-link button is-normal is-rounded is-dark">
                   <span class="icon">
@@ -164,7 +163,18 @@
                   </span>
                   <span>Code (coming soon)</span>
                   </a>
+              </span> -->
+
+              <span class="link-block">
+                <button class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                    <i class="fas fa-file-pdf"></i>
+                  </span>
+                  <span>Code (coming soon)</span>
+                </button>
               </span>
+
+              
               <!-- Dataset Link. -->
               <!-- <span class="link-block">
                 <a href="https://github.com/google/nerfies/releases/tag/0.1"
@@ -439,7 +449,7 @@
             would be impossible without nerfies since it would require going through a wall.
           </p> -->
           <video id="dollyzoom" autoplay controls muted loop playsinline height="100%">
-            <source src="./static/videos/hanging_success.mp4"
+            <source src="./static/videos/hanging_success_2.mp4"
                     type="video/mp4">
           </video>
         </div>
@@ -456,7 +466,7 @@
               samples that fall outside of a bounding box during rendering.
             </p> -->
             <video id="matting-video" controls playsinline height="100%">
-              <source src="./static/videos/hanging_failure.mp4"
+              <source src="./static/videos/hanging_failure_2.mp4"
                       type="video/mp4">
             </video>
           </div>
@@ -506,7 +516,7 @@
             would be impossible without nerfies since it would require going through a wall.
           </p> -->
           <video id="dollyzoom" autoplay controls muted loop playsinline height="100%">
-            <source src="./static/videos/insertion_success.mp4"
+            <source src="./static/videos/insertion_success_2.mp4"
                     type="video/mp4">
           </video>
         </div>
@@ -523,7 +533,7 @@
               samples that fall outside of a bounding box during rendering.
             </p> -->
             <video id="matting-video" controls playsinline height="100%">
-              <source src="./static/videos/insertion_failure.mp4"
+              <source src="./static/videos/insertion_failure_2.mp4"
                       type="video/mp4">
             </video>
           </div>
@@ -569,34 +579,35 @@
     <div class="columns is-centered has-text-centered">
       <div class="column is-four-fifths">
         <!-- 新加的文字段落 -->
-        <img id="model" src="static/images/real_world_task.png" width="100%">
+        <!-- <img id="model" src="static/images/real_world_task.png" width="100%"> -->
         <div class="content has-text-justified">
           <p>
-            To confirm that PoCoDP3 performs well in real-world settings, two challenging contact-rich manipulation tasks requiring precise pose control were designed: <strong>wrench hanging</strong> and <strong>toothbrush insertion</strong>.
+            We evaluate the performance of PoCoDP3 and PoCoDP3 (w/o Ref) under varying numbers of sampling steps on the Toolhang task.
           </p>
 
           <p>
-            Each task involved both contact and non-contact phases, with the aim of evaluating the policy's capability to adapt to dynamic contact conditions and to robustly fuse visual and tactile inputs throughout the manipulation process.
+            To gain further insight into how reference guidance affects the generation process and to facilitate visualization, we conduct experiments on the state-based Push-T task, originally proposed in <a href="https://github.com/real-stanford/diffusion_policy" target="_blank" rel="noopener">Diffusion Policy</a>, where the policy must push a T-shaped block into a designated target area.
           </p>
 
-          <img id="model" src="static/images/Table2.png" width="50%" style="display:block; margin:0 auto;">
+          <img id="model" src="static/images/res_dp_denoising.png" width="100%" style="display:block; margin:0 auto;">
 
         </div>
       </div>
+      
     </div>
-    <h2 class="title is-4">Wrench Hanging</h2>
+    <h2 class="title is-4">Reference-Guided Diffusion Policy</h2>
     
     <div class="columns is-centered">
       <!-- Visual Effects. -->
       <div class="column">
         <div class="content">
-          <h2 class="title is-5">Success Case</h2>
+          <h2 class="title is-5">DDPM-100step</h2>
           <!-- <p>
             Using <i>nerfies</i> you can create fun visual effects. This Dolly zoom effect
             would be impossible without nerfies since it would require going through a wall.
           </p> -->
           <video id="dollyzoom" autoplay controls muted loop playsinline height="100%">
-            <source src="./static/videos/hanging_success.mp4"
+            <source src="./static/videos/refdp-ddpm-100.mp4"
                     type="video/mp4">
           </video>
         </div>
@@ -605,7 +616,7 @@
 
       <!-- Matting. -->
       <div class="column">
-        <h2 class="title is-5">Failure Case</h2>
+        <h2 class="title is-5">DDIM-100step</h2>
         <div class="columns is-centered">
           <div class="column content">
             <!-- <p>
@@ -613,7 +624,7 @@
               samples that fall outside of a bounding box during rendering.
             </p> -->
             <video id="matting-video" controls playsinline height="100%">
-              <source src="./static/videos/hanging_failure.mp4"
+              <source src="./static/videos/refdp-ddim-100.mp4"
                       type="video/mp4">
             </video>
           </div>
@@ -623,10 +634,10 @@
       <!-- Matting. -->
       <div class="column is-flex">
         <div class="content is-flex is-flex-direction-column" style="height: 100%;">
-          <h2 class="title is-5">PC & Tactile Images</h2>
+          <h2 class="title is-5">DDIM-2step</h2>
           <div class="video-container" style="flex-grow: 1; display: flex; align-items: center;">
             <video id="matting-video2" controls playsinline style="width: 100%; height: auto; max-height: 100%;">
-              <source src="./static/videos/hanging_obs.mp4" type="video/mp4">
+              <source src="./static/videos/refdp-ddim-2.mp4" type="video/mp4">
             </video>
           </div>
         </div>
@@ -651,19 +662,19 @@
 
 <section class="section">
   <div class="container is-max-desktop has-text-centered">
-    <h2 class="title is-4">Toothbrush Insertion</h2>
+    <h2 class="title is-4">Diffusion Policy</h2>
     
     <div class="columns is-centered">
       <!-- Visual Effects. -->
       <div class="column">
         <div class="content">
-          <h2 class="title is-5">Success Case</h2>
+          <h2 class="title is-5">DDPM-100step</h2>
           <!-- <p>
             Using <i>nerfies</i> you can create fun visual effects. This Dolly zoom effect
             would be impossible without nerfies since it would require going through a wall.
           </p> -->
           <video id="dollyzoom" autoplay controls muted loop playsinline height="100%">
-            <source src="./static/videos/insertion_success.mp4"
+            <source src="./static/videos/dp-ddpm-100.mp4"
                     type="video/mp4">
           </video>
         </div>
@@ -672,7 +683,7 @@
 
       <!-- Matting. -->
       <div class="column">
-        <h2 class="title is-5">Failure Case</h2>
+        <h2 class="title is-5">DDIM-100step</h2>
         <div class="columns is-centered">
           <div class="column content">
             <!-- <p>
@@ -680,7 +691,7 @@
               samples that fall outside of a bounding box during rendering.
             </p> -->
             <video id="matting-video" controls playsinline height="100%">
-              <source src="./static/videos/insertion_failure.mp4"
+              <source src="./static/videos/dp-ddim-100.mp4"
                       type="video/mp4">
             </video>
           </div>
@@ -690,10 +701,10 @@
       <!-- Matting. -->
       <div class="column is-flex">
         <div class="content is-flex is-flex-direction-column" style="height: 100%;">
-          <h2 class="title is-5">PC & Tactile Images</h2>
+          <h2 class="title is-5">DDIM-2step</h2>
           <div class="video-container" style="flex-grow: 1; display: flex; align-items: center;">
             <video id="matting-video2" controls playsinline style="width: 100%; height: auto; max-height: 100%;">
-              <source src="./static/videos/insertion_obs.mp4" type="video/mp4">
+              <source src="./static/videos/dp-ddpm-2.mp4" type="video/mp4">
             </video>
           </div>
         </div>
