@@ -39,10 +39,18 @@
   <script src="./static/js/bulma-carousel.min.js"></script>
   <script src="./static/js/bulma-slider.min.js"></script>
   <script src="./static/js/index.js"></script>
+
+  <style>
+  .small-video {
+    width: 50%;
+    height: auto;
+  }
+  </style>
+
 </head>
 <body>
 
-<nav class="navbar" role="navigation" aria-label="main navigation">
+<!-- <nav class="navbar" role="navigation" aria-label="main navigation">
   <div class="navbar-brand">
     <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
       <span aria-hidden="true"></span>
@@ -80,7 +88,7 @@
     </div>
 
   </div>
-</nav>
+</nav> -->
 
 
 <section class="hero">
@@ -88,8 +96,8 @@
     <div class="container is-max-desktop">
       <div class="columns is-centered">
         <div class="column has-text-centered">
-          <h1 class="title is-1 publication-title">Nerfies: Deformable Neural Radiance Fields</h1>
-          <div class="is-size-5 publication-authors">
+          <h1 class="title is-1 publication-title">PoCoDP3: Pose and Contact-Aware Visual-Tactile Policy for Contact-Rich 3D Manipulation</h1>
+          <!-- <div class="is-size-5 publication-authors">
             <span class="author-block">
               <a href="https://keunhong.com">Keunhong Park</a><sup>1</sup>,</span>
             <span class="author-block">
@@ -109,12 +117,12 @@
             <span class="author-block">
               <a href="http://www.ricardomartinbrualla.com">Ricardo Martin-Brualla</a><sup>2</sup>
             </span>
-          </div>
+          </div> -->
 
-          <div class="is-size-5 publication-authors">
+          <!-- <div class="is-size-5 publication-authors">
             <span class="author-block"><sup>1</sup>University of Washington,</span>
             <span class="author-block"><sup>2</sup>Google Research</span>
-          </div>
+          </div> -->
 
           <div class="column has-text-centered">
             <div class="publication-links">
@@ -128,7 +136,7 @@
                   <span>Paper</span>
                 </a>
               </span>
-              <span class="link-block">
+              <!-- <span class="link-block">
                 <a href="https://arxiv.org/abs/2011.12948"
                    class="external-link button is-normal is-rounded is-dark">
                   <span class="icon">
@@ -136,9 +144,9 @@
                   </span>
                   <span>arXiv</span>
                 </a>
-              </span>
+              </span> -->
               <!-- Video Link. -->
-              <span class="link-block">
+              <!-- <span class="link-block">
                 <a href="https://www.youtube.com/watch?v=MrKrnHhk8IA"
                    class="external-link button is-normal is-rounded is-dark">
                   <span class="icon">
@@ -146,7 +154,7 @@
                   </span>
                   <span>Video</span>
                 </a>
-              </span>
+              </span> -->
               <!-- Code Link. -->
               <span class="link-block">
                 <a href="https://github.com/google/nerfies"
@@ -154,18 +162,18 @@
                   <span class="icon">
                       <i class="fab fa-github"></i>
                   </span>
-                  <span>Code</span>
+                  <span>Code (coming soon)</span>
                   </a>
               </span>
               <!-- Dataset Link. -->
-              <span class="link-block">
+              <!-- <span class="link-block">
                 <a href="https://github.com/google/nerfies/releases/tag/0.1"
                    class="external-link button is-normal is-rounded is-dark">
                   <span class="icon">
                       <i class="far fa-images"></i>
                   </span>
                   <span>Data</span>
-                  </a>
+                  </a> -->
             </div>
 
           </div>
@@ -175,7 +183,7 @@
   </div>
 </section>
 
-<section class="hero teaser">
+<!-- <section class="hero teaser">
   <div class="container is-max-desktop">
     <div class="hero-body">
       <video id="teaser" autoplay muted loop playsinline height="100%">
@@ -189,10 +197,10 @@
       </h2>
     </div>
   </div>
-</section>
+</section> -->
 
 
-<section class="hero is-light is-small">
+<!-- <section class="hero is-light is-small">
   <div class="hero-body">
     <div class="container">
       <div id="results-carousel" class="carousel results-carousel">
@@ -247,7 +255,7 @@
       </div>
     </div>
   </div>
-</section>
+</section> -->
 
 
 <section class="section">
@@ -258,67 +266,180 @@
         <h2 class="title is-3">Abstract</h2>
         <div class="content has-text-justified">
           <p>
-            We present the first method capable of photorealistically reconstructing a non-rigidly
-            deforming scene using photos/videos captured casually from mobile phones.
-          </p>
-          <p>
-            Our approach augments neural radiance fields
-            (NeRF) by optimizing an
-            additional continuous volumetric deformation field that warps each observed point into a
-            canonical 5D NeRF.
-            We observe that these NeRF-like deformation fields are prone to local minima, and
-            propose a coarse-to-fine optimization method for coordinate-based models that allows for
-            more robust optimization.
-            By adapting principles from geometry processing and physical simulation to NeRF-like
-            models, we propose an elastic regularization of the deformation field that further
-            improves robustness.
-          </p>
-          <p>
-            We show that <span class="dnerf">Nerfies</span> can turn casually captured selfie
-            photos/videos into deformable NeRF
-            models that allow for photorealistic renderings of the subject from arbitrary
-            viewpoints, which we dub <i>"nerfies"</i>. We evaluate our method by collecting data
-            using a
-            rig with two mobile phones that take time-synchronized photos, yielding train/validation
-            images of the same pose at different viewpoints. We show that our method faithfully
-            reconstructs non-rigidly deforming scenes and reproduces unseen views with high
-            fidelity.
+            Imitation learning in contact-rich tasks requires both global spatial awareness and fine-grained in-hand interaction understanding. However, vision-only policies based on images or point clouds are often susceptible to occlusion and struggle to capture critical contact details, particularly in visually ambiguous regions or during subtle tactile interactions. In this work, we present PoCoDP3, a pose and contact-aware visual-tactile policy that integrates 3D point clouds and tactile inputs to generate actions in contact-rich tasks. PoCoDP3 introduces a dual-branch tactile encoder that jointly models contact dynamics and estimates in-hand object pose, enabling structured tactile representations for precise contact-rich manipulation. A contact-driven cross-modal fusion mechanism adaptively prioritizes sensory modalities based on real-time interaction cues, enabling efficient visuo-tactile integration. Moreover, a reference-guided diffusion policy leverages reference action offsets to reduce sampling steps, significantly accelerating inference while maintaining action quality. Experiments across simulated and real-world tasks demonstrate that PoCoDP3 consistently outperforms representative 2D and 3D policies in terms of both accuracy and inference efficiency.
           </p>
         </div>
       </div>
     </div>
-    <!--/ Abstract. -->
+    
+    <!--/ Method. -->
+    <section class="section">
+      <div class="container is-max-desktop">
+        <div class="columns is-centered has-text-centered">
+          <div class="column is-four-fifths">
+            <h2 class="title is-3">Method</h2>
+              <img id="model" src="static/images/method.png" width="100%">
+              <br><br>
+              <div class="content has-text-justified">
+                <p>
+                  <strong>PoCoDP3 Architecture.</strong> (a) Proprioceptive input is encoded by an MLP, point clouds by a DP3 encoder, and tactile data by a dual-branch tactile encoder. (b) The dual-branch tactile encoder uses tactile images and marker motion to encode object pose and contact state. (c) The pose estimator in the pose-aware branch predicts the 6-DoF in-hand object pose from tactile images. (d) Encoded contact information guide point cloud–tactile fusion via an attention mechanism. (e) The fused features serve as conditional input to a reference-guided diffusion policy for generating action trajectories.
+                </p>  
+              </div>
+            </div>
+        </div>
+        <!--/ Model. -->
+      </div>
+    </section>
+    <!--/ Paper video. -->
+  </div>
+</section>
 
-    <!-- Paper video. -->
+<section class="section">
+  <div class="container is-max-desktop has-text-centered">
+    <h2 class="title is-3">Simulation Evaluations</h2>
+    <img id="model" src="static/images/simulation_task.png" width="60%">
     <div class="columns is-centered has-text-centered">
       <div class="column is-four-fifths">
-        <h2 class="title is-3">Video</h2>
-        <div class="publication-video">
-          <iframe src="https://www.youtube.com/embed/MrKrnHhk8IA?rel=0&amp;showinfo=0"
-                  frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+        
+        <!-- <h2 class="title is-4">Toolhang</h2>
+        <video id="matting-video" controls playsinline class="small-video">
+                  <source src="./static/videos/toolhang.mp4"
+                          type="video/mp4">
+        </video>
+
+        <h2 class="title is-4">Square</h2>
+        <video id="matting-video" controls playsinline class="small-video">
+                  <source src="./static/videos/square.mp4"
+                          type="video/mp4">
+        </video>
+
+        <h2 class="title is-4">Threading</h2>
+        <video id="matting-video" controls playsinline class="small-video">
+                  <source src="./static/videos/threading.mp4"
+                          type="video/mp4">
+        </video> -->
+
+
+
+        <!-- 新加的文字段落 -->
+        <div class="content has-text-justified">
+          <p>
+            We evaluate our method on three simulation tasks: <strong>Toolhang</strong> and <strong>Square</strong> from <a href="https://robomimic.github.io/" target="_blank" rel="noopener">Robomimic</a>, and <strong>Threading D0</strong> from <a href="https://mimicgen.github.io/" target="_blank" rel="noopener">MimicGen</a>. <a href="https://github.com/Rancho-zhao/FOTS" target="_blank" rel="noopener">FOTS</a> is integrated into the environment to generate tactile images and marker motion data.
+            <!-- <strong>Toothbrush Insertion</strong>: Use the robot to insert the toothbrush into its charging dock. The robot needs to (1)  <em>grasp</em> the toothbrush, (2)  <em>move</em> the tooth-brush toward the charging dock, (3)  <em>align</em> the toothbrush with the charging slot, and (4)  <em>insert</em> the toothbrush into the charging dock. -->
+          </p>
+
+          <p>
+            We select two state-of-the-art diffusion-based policies as baselines for comparison: (1) <a href="https://github.com/real-stanford/diffusion_policy" target="_blank" rel="noopener">Diffusion Policy</a> (DP), which generates actions conditioned on image observations; and (2) <a href="https://github.com/YanjieZe/3D-Diffusion-Policy" target="_blank" rel="noopener">DP3</a>, which replaces image inputs with point cloud observations while maintaining the same diffusion framework. In addition, we compare three ablated variants in simulation: (1) PoCoDP3 (w/o PoseEst): replaces the pose features with ResNet-encoded tactile image features as the output of the pose-aware branch; (2) PoCoDP3 (w/o Attn): directly concatenates the encoded pose features with the point cloud features, without using the contact-driven dynamic modality fusion mechanism; and (3) PoCoDP3 (w/o Ref): uses standard diffusion policy instead of reference-guided one. We evaluate all variants based on inference time and success rate.
+          </p>
+
+          <img id="model" src="static/images/Table1.png" width="70%" style="display:block; margin:0 auto;">
+
         </div>
       </div>
     </div>
-    <!--/ Paper video. -->
+
+    <div class="columns is-centered">
+      <!-- Visual Effects. -->
+      <div class="column">
+        <div class="content">
+          <h2 class="title is-5">Toolhang</h2>
+          <!-- <p>
+            Using <i>nerfies</i> you can create fun visual effects. This Dolly zoom effect
+            would be impossible without nerfies since it would require going through a wall.
+          </p> -->
+          <video id="dollyzoom" controls playsinline class="small-video">
+            <source src="./static/videos/threading.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+      </div>
+      <!--/ Visual Effects. -->
+    </div>
+
+    <div class="columns is-centered">
+      <!-- Matting. -->
+      <div class="column">
+        <h2 class="title is-5">Square</h2>
+        <div class="columns is-centered">
+          <div class="column content">
+            <!-- <p>
+              As a byproduct of our method, we can also solve the matting problem by ignoring
+              samples that fall outside of a bounding box during rendering.
+            </p> -->
+            <video id="matting-video" controls playsinline height="100%">
+              <source src="./static/videos/square.mp4"
+                      type="video/mp4">
+            </video>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Visual Effects. -->
+      <div class="column">
+        <div class="content">
+          <h2 class="title is-5">Threading</h2>
+          <!-- <p>
+            Using <i>nerfies</i> you can create fun visual effects. This Dolly zoom effect
+            would be impossible without nerfies since it would require going through a wall.
+          </p> -->
+          <video id="dollyzoom" autoplay controls muted loop playsinline height="100%">
+            <source src="./static/videos/toolhang.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+      </div>
+      <!--/ Visual Effects. -->
+    </div>
+
+
+
+    
+    
+    <!-- <h2 class="title is-4">observation (Point Clouds & Tactile Images)</h2>
+    <video id="matting-video" controls playsinline class="small-video">
+              <source src="./static/videos/hanging_obs.mp4"
+                      type="video/mp4">
+    </video> -->
+    
   </div>
 </section>
 
 
 <section class="section">
-  <div class="container is-max-desktop">
+  <div class="container is-max-desktop has-text-centered">
+    <h2 class="title is-3">Real-world Evaluations</h2>
+    
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <!-- 新加的文字段落 -->
+        <img id="model" src="static/images/real_world_task.png" width="100%">
+        <div class="content has-text-justified">
+          <p>
+            To confirm that PoCoDP3 performs well in real-world settings, two challenging contact-rich manipulation tasks requiring precise pose control were designed: <strong>wrench hanging</strong> and <strong>toothbrush insertion</strong>.
+          </p>
 
+          <p>
+            Each task involved both contact and non-contact phases, with the aim of evaluating the policy's capability to adapt to dynamic contact conditions and to robustly fuse visual and tactile inputs throughout the manipulation process.
+          </p>
+
+          <img id="model" src="static/images/Table2.png" width="50%" style="display:block; margin:0 auto;">
+
+        </div>
+      </div>
+    </div>
+    <h2 class="title is-4">Wrench Hanging</h2>
+    
     <div class="columns is-centered">
-
       <!-- Visual Effects. -->
       <div class="column">
         <div class="content">
-          <h2 class="title is-3">Visual Effects</h2>
-          <p>
+          <h2 class="title is-5">Success Case</h2>
+          <!-- <p>
             Using <i>nerfies</i> you can create fun visual effects. This Dolly zoom effect
             would be impossible without nerfies since it would require going through a wall.
-          </p>
+          </p> -->
           <video id="dollyzoom" autoplay controls muted loop playsinline height="100%">
-            <source src="./static/videos/dollyzoom-stacked.mp4"
+            <source src="./static/videos/hanging_success.mp4"
                     type="video/mp4">
           </video>
         </div>
@@ -327,120 +448,275 @@
 
       <!-- Matting. -->
       <div class="column">
-        <h2 class="title is-3">Matting</h2>
+        <h2 class="title is-5">Failure Case</h2>
         <div class="columns is-centered">
           <div class="column content">
-            <p>
+            <!-- <p>
               As a byproduct of our method, we can also solve the matting problem by ignoring
               samples that fall outside of a bounding box during rendering.
-            </p>
+            </p> -->
             <video id="matting-video" controls playsinline height="100%">
-              <source src="./static/videos/matting.mp4"
+              <source src="./static/videos/hanging_failure.mp4"
                       type="video/mp4">
             </video>
           </div>
+        </div>
+      </div>
 
+      <!-- Matting. -->
+      <div class="column is-flex">
+        <div class="content is-flex is-flex-direction-column" style="height: 100%;">
+          <h2 class="title is-5">PC & Tactile Images</h2>
+          <div class="video-container" style="flex-grow: 1; display: flex; align-items: center;">
+            <video id="matting-video2" controls playsinline style="width: 100%; height: auto; max-height: 100%;">
+              <source src="./static/videos/hanging_obs.mp4" type="video/mp4">
+            </video>
+          </div>
         </div>
       </div>
     </div>
-    <!--/ Matting. -->
 
-    <!-- Animation. -->
+    <!-- 新加的文字段落 -->
+    <!-- <div class="content has-text-justified">
+      <p>
+        <strong>Wrench Hanging</strong>: Use the robot's gripper to hang the wrench on the hook. The robot needs to (1) <em>grasp</em> the wrench, (2) <em>move</em> the wrench closer to the hook, (3) <em>align</em> the wrench with the hook, and (4) <em>place</em> the wrench onto the hook.
+      </p>
+    </div> -->
+    
+    <!-- <h2 class="title is-4">observation (Point Clouds & Tactile Images)</h2>
+    <video id="matting-video" controls playsinline class="small-video">
+              <source src="./static/videos/hanging_obs.mp4"
+                      type="video/mp4">
+    </video> -->
+    
+  </div>
+</section>
+
+<section class="section">
+  <div class="container is-max-desktop has-text-centered">
+    <h2 class="title is-4">Toothbrush Insertion</h2>
+    
     <div class="columns is-centered">
-      <div class="column is-full-width">
-        <h2 class="title is-3">Animation</h2>
-
-        <!-- Interpolating. -->
-        <h3 class="title is-4">Interpolating states</h3>
-        <div class="content has-text-justified">
-          <p>
-            We can also animate the scene by interpolating the deformation latent codes of two input
-            frames. Use the slider here to linearly interpolate between the left frame and the right
-            frame.
-          </p>
-        </div>
-        <div class="columns is-vcentered interpolation-panel">
-          <div class="column is-3 has-text-centered">
-            <img src="./static/images/interpolate_start.jpg"
-                 class="interpolation-image"
-                 alt="Interpolate start reference image."/>
-            <p>Start Frame</p>
-          </div>
-          <div class="column interpolation-video-column">
-            <div id="interpolation-image-wrapper">
-              Loading...
-            </div>
-            <input class="slider is-fullwidth is-large is-info"
-                   id="interpolation-slider"
-                   step="1" min="0" max="100" value="0" type="range">
-          </div>
-          <div class="column is-3 has-text-centered">
-            <img src="./static/images/interpolate_end.jpg"
-                 class="interpolation-image"
-                 alt="Interpolation end reference image."/>
-            <p class="is-bold">End Frame</p>
-          </div>
-        </div>
-        <br/>
-        <!--/ Interpolating. -->
-
-        <!-- Re-rendering. -->
-        <h3 class="title is-4">Re-rendering the input video</h3>
-        <div class="content has-text-justified">
-          <p>
-            Using <span class="dnerf">Nerfies</span>, you can re-render a video from a novel
-            viewpoint such as a stabilized camera by playing back the training deformations.
-          </p>
-        </div>
-        <div class="content has-text-centered">
-          <video id="replay-video"
-                 controls
-                 muted
-                 preload
-                 playsinline
-                 width="75%">
-            <source src="./static/videos/replay.mp4"
+      <!-- Visual Effects. -->
+      <div class="column">
+        <div class="content">
+          <h2 class="title is-5">Success Case</h2>
+          <!-- <p>
+            Using <i>nerfies</i> you can create fun visual effects. This Dolly zoom effect
+            would be impossible without nerfies since it would require going through a wall.
+          </p> -->
+          <video id="dollyzoom" autoplay controls muted loop playsinline height="100%">
+            <source src="./static/videos/insertion_success.mp4"
                     type="video/mp4">
           </video>
         </div>
-        <!--/ Re-rendering. -->
-
       </div>
-    </div>
-    <!--/ Animation. -->
+      <!--/ Visual Effects. -->
 
-
-    <!-- Concurrent Work. -->
-    <div class="columns is-centered">
-      <div class="column is-full-width">
-        <h2 class="title is-3">Related Links</h2>
-
-        <div class="content has-text-justified">
-          <p>
-            There's a lot of excellent work that was introduced around the same time as ours.
-          </p>
-          <p>
-            <a href="https://arxiv.org/abs/2104.09125">Progressive Encoding for Neural Optimization</a> introduces an idea similar to our windowed position encoding for coarse-to-fine optimization.
-          </p>
-          <p>
-            <a href="https://www.albertpumarola.com/research/D-NeRF/index.html">D-NeRF</a> and <a href="https://gvv.mpi-inf.mpg.de/projects/nonrigid_nerf/">NR-NeRF</a>
-            both use deformation fields to model non-rigid scenes.
-          </p>
-          <p>
-            Some works model videos with a NeRF by directly modulating the density, such as <a href="https://video-nerf.github.io/">Video-NeRF</a>, <a href="https://www.cs.cornell.edu/~zl548/NSFF/">NSFF</a>, and <a href="https://neural-3d-video.github.io/">DyNeRF</a>
-          </p>
-          <p>
-            There are probably many more by the time you are reading this. Check out <a href="https://dellaert.github.io/NeRF/">Frank Dellart's survey on recent NeRF papers</a>, and <a href="https://github.com/yenchenlin/awesome-NeRF">Yen-Chen Lin's curated list of NeRF papers</a>.
-          </p>
+      <!-- Matting. -->
+      <div class="column">
+        <h2 class="title is-5">Failure Case</h2>
+        <div class="columns is-centered">
+          <div class="column content">
+            <!-- <p>
+              As a byproduct of our method, we can also solve the matting problem by ignoring
+              samples that fall outside of a bounding box during rendering.
+            </p> -->
+            <video id="matting-video" controls playsinline height="100%">
+              <source src="./static/videos/insertion_failure.mp4"
+                      type="video/mp4">
+            </video>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Matting. -->
+      <div class="column is-flex">
+        <div class="content is-flex is-flex-direction-column" style="height: 100%;">
+          <h2 class="title is-5">PC & Tactile Images</h2>
+          <div class="video-container" style="flex-grow: 1; display: flex; align-items: center;">
+            <video id="matting-video2" controls playsinline style="width: 100%; height: auto; max-height: 100%;">
+              <source src="./static/videos/insertion_obs.mp4" type="video/mp4">
+            </video>
+          </div>
         </div>
       </div>
     </div>
-    <!--/ Concurrent Work. -->
 
+    <!-- 新加的文字段落 -->
+    <!-- <div class="content has-text-justified">
+      <p>
+        <strong>Toothbrush Insertion</strong>: Use the robot to insert the toothbrush into its charging dock. The robot needs to (1)  <em>grasp</em> the toothbrush, (2)  <em>move</em> the tooth-brush toward the charging dock, (3)  <em>align</em> the toothbrush with the charging slot, and (4)  <em>insert</em> the toothbrush into the charging dock.
+      </p>
+    </div> -->
+    
+    <!-- <h2 class="title is-4">observation (Point Clouds & Tactile Images)</h2>
+    <video id="matting-video" controls playsinline class="small-video">
+              <source src="./static/videos/insertion_obs.mp4"
+                      type="video/mp4">
+    </video> -->
+    
   </div>
 </section>
 
 
+
+
+<section class="section">
+  <div class="container is-max-desktop has-text-centered">
+    <h2 class="title is-3">Sampling Efficiency Evaluation</h2>
+    
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <!-- 新加的文字段落 -->
+        <img id="model" src="static/images/real_world_task.png" width="100%">
+        <div class="content has-text-justified">
+          <p>
+            To confirm that PoCoDP3 performs well in real-world settings, two challenging contact-rich manipulation tasks requiring precise pose control were designed: <strong>wrench hanging</strong> and <strong>toothbrush insertion</strong>.
+          </p>
+
+          <p>
+            Each task involved both contact and non-contact phases, with the aim of evaluating the policy's capability to adapt to dynamic contact conditions and to robustly fuse visual and tactile inputs throughout the manipulation process.
+          </p>
+
+          <img id="model" src="static/images/Table2.png" width="50%" style="display:block; margin:0 auto;">
+
+        </div>
+      </div>
+    </div>
+    <h2 class="title is-4">Wrench Hanging</h2>
+    
+    <div class="columns is-centered">
+      <!-- Visual Effects. -->
+      <div class="column">
+        <div class="content">
+          <h2 class="title is-5">Success Case</h2>
+          <!-- <p>
+            Using <i>nerfies</i> you can create fun visual effects. This Dolly zoom effect
+            would be impossible without nerfies since it would require going through a wall.
+          </p> -->
+          <video id="dollyzoom" autoplay controls muted loop playsinline height="100%">
+            <source src="./static/videos/hanging_success.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+      </div>
+      <!--/ Visual Effects. -->
+
+      <!-- Matting. -->
+      <div class="column">
+        <h2 class="title is-5">Failure Case</h2>
+        <div class="columns is-centered">
+          <div class="column content">
+            <!-- <p>
+              As a byproduct of our method, we can also solve the matting problem by ignoring
+              samples that fall outside of a bounding box during rendering.
+            </p> -->
+            <video id="matting-video" controls playsinline height="100%">
+              <source src="./static/videos/hanging_failure.mp4"
+                      type="video/mp4">
+            </video>
+          </div>
+        </div>
+      </div>
+
+      <!-- Matting. -->
+      <div class="column is-flex">
+        <div class="content is-flex is-flex-direction-column" style="height: 100%;">
+          <h2 class="title is-5">PC & Tactile Images</h2>
+          <div class="video-container" style="flex-grow: 1; display: flex; align-items: center;">
+            <video id="matting-video2" controls playsinline style="width: 100%; height: auto; max-height: 100%;">
+              <source src="./static/videos/hanging_obs.mp4" type="video/mp4">
+            </video>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 新加的文字段落 -->
+    <!-- <div class="content has-text-justified">
+      <p>
+        <strong>Wrench Hanging</strong>: Use the robot's gripper to hang the wrench on the hook. The robot needs to (1) <em>grasp</em> the wrench, (2) <em>move</em> the wrench closer to the hook, (3) <em>align</em> the wrench with the hook, and (4) <em>place</em> the wrench onto the hook.
+      </p>
+    </div> -->
+    
+    <!-- <h2 class="title is-4">observation (Point Clouds & Tactile Images)</h2>
+    <video id="matting-video" controls playsinline class="small-video">
+              <source src="./static/videos/hanging_obs.mp4"
+                      type="video/mp4">
+    </video> -->
+    
+  </div>
+</section>
+
+<section class="section">
+  <div class="container is-max-desktop has-text-centered">
+    <h2 class="title is-4">Toothbrush Insertion</h2>
+    
+    <div class="columns is-centered">
+      <!-- Visual Effects. -->
+      <div class="column">
+        <div class="content">
+          <h2 class="title is-5">Success Case</h2>
+          <!-- <p>
+            Using <i>nerfies</i> you can create fun visual effects. This Dolly zoom effect
+            would be impossible without nerfies since it would require going through a wall.
+          </p> -->
+          <video id="dollyzoom" autoplay controls muted loop playsinline height="100%">
+            <source src="./static/videos/insertion_success.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+      </div>
+      <!--/ Visual Effects. -->
+
+      <!-- Matting. -->
+      <div class="column">
+        <h2 class="title is-5">Failure Case</h2>
+        <div class="columns is-centered">
+          <div class="column content">
+            <!-- <p>
+              As a byproduct of our method, we can also solve the matting problem by ignoring
+              samples that fall outside of a bounding box during rendering.
+            </p> -->
+            <video id="matting-video" controls playsinline height="100%">
+              <source src="./static/videos/insertion_failure.mp4"
+                      type="video/mp4">
+            </video>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Matting. -->
+      <div class="column is-flex">
+        <div class="content is-flex is-flex-direction-column" style="height: 100%;">
+          <h2 class="title is-5">PC & Tactile Images</h2>
+          <div class="video-container" style="flex-grow: 1; display: flex; align-items: center;">
+            <video id="matting-video2" controls playsinline style="width: 100%; height: auto; max-height: 100%;">
+              <source src="./static/videos/insertion_obs.mp4" type="video/mp4">
+            </video>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 新加的文字段落 -->
+    <!-- <div class="content has-text-justified">
+      <p>
+        <strong>Toothbrush Insertion</strong>: Use the robot to insert the toothbrush into its charging dock. The robot needs to (1)  <em>grasp</em> the toothbrush, (2)  <em>move</em> the tooth-brush toward the charging dock, (3)  <em>align</em> the toothbrush with the charging slot, and (4)  <em>insert</em> the toothbrush into the charging dock.
+      </p>
+    </div> -->
+    
+    <!-- <h2 class="title is-4">observation (Point Clouds & Tactile Images)</h2>
+    <video id="matting-video" controls playsinline class="small-video">
+              <source src="./static/videos/insertion_obs.mp4"
+                      type="video/mp4">
+    </video> -->
+    
+  </div>
+</section>
+
+<!-- 
 <section class="section" id="BibTeX">
   <div class="container is-max-desktop content">
     <h2 class="title">BibTeX</h2>
@@ -451,12 +727,12 @@
   year      = {2021},
 }</code></pre>
   </div>
-</section>
+</section> -->
 
 
 <footer class="footer">
   <div class="container">
-    <div class="content has-text-centered">
+    <!-- <div class="content has-text-centered">
       <a class="icon-link"
          href="./static/videos/nerfies_paper.pdf">
         <i class="fas fa-file-pdf"></i>
@@ -464,22 +740,28 @@
       <a class="icon-link" href="https://github.com/keunhong" class="external-link" disabled>
         <i class="fab fa-github"></i>
       </a>
-    </div>
+    </div> -->
     <div class="columns is-centered">
       <div class="column is-8">
         <div class="content">
-          <p>
+          <!-- <p>
             This website is licensed under a <a rel="license"
                                                 href="http://creativecommons.org/licenses/by-sa/4.0/">Creative
             Commons Attribution-ShareAlike 4.0 International License</a>.
-          </p>
+
+          </p> -->
+
           <p>
+            This website is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative
+            Commons Attribution-ShareAlike 4.0 International License</a>. Modified upon original <a href="https://nerfies.github.io/"> Nerfies </a> website (<a href="https://github.com/nerfies/nerfies.github.io">source</a>).
+          </p>
+          <!-- <p>
             This means you are free to borrow the <a
               href="https://github.com/nerfies/nerfies.github.io">source code</a> of this website,
             we just ask that you link back to this page in the footer.
             Please remember to remove the analytics code included in the header of the website which
             you do not want on your website.
-          </p>
+          </p> -->
         </div>
       </div>
     </div>

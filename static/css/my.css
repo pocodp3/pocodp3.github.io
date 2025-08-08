@@ -1,0 +1,14 @@
+.columns {
+  align-items: stretch; /* 让每列等高 */
+}
+
+.columns .column {
+  display: flex;
+  flex-direction: column;
+}
+
+.columns video {
+  flex: 1;             /* 视频占满可用高度 */
+  width: 100%;         /* 占满列宽 */
+  object-fit: cover;   /* 裁剪多余，保持比例 */
+}
