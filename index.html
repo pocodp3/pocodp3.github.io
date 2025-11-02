@@ -169,7 +169,7 @@
               <span class="link-block">
                 <button class="external-link button is-normal is-rounded is-dark">
                   <span class="icon">
-                    <i class="fas fa-file-pdf"></i>
+                    <i class="fab fa-github"></i>
                   </span>
                   <span>Code (coming soon)</span>
                 </button>
@@ -340,7 +340,10 @@
           </p>
 
           <p>
-            We select two state-of-the-art diffusion-based policies as baselines for comparison: (1) <a href="https://github.com/real-stanford/diffusion_policy" target="_blank" rel="noopener">Diffusion Policy</a> (DP), which generates actions conditioned on image observations; and (2) <a href="https://github.com/YanjieZe/3D-Diffusion-Policy" target="_blank" rel="noopener">DP3</a>, which replaces image inputs with point cloud observations while maintaining the same diffusion framework. In addition, we compare three ablated variants in simulation: (1) PoCoDP3 (w/o PoseEst): replaces the pose features with ResNet-encoded tactile image features as the output of the pose-aware branch; (2) PoCoDP3 (w/o Attn): directly concatenates the encoded pose features with the point cloud features, without using the contact-driven dynamic modality fusion mechanism; and (3) PoCoDP3 (w/o Ref): uses standard diffusion policy instead of reference-guided one. We evaluate all variants based on inference time and success rate.
+            <!-- We select two state-of-the-art diffusion-based policies as baselines for comparison: (1) <a href="https://github.com/real-stanford/diffusion_policy" target="_blank" rel="noopener">Diffusion Policy</a> (DP), which generates actions conditioned on image observations; and (2) <a href="https://github.com/YanjieZe/3D-Diffusion-Policy" target="_blank" rel="noopener">DP3</a>, which replaces image inputs with point cloud observations while maintaining the same diffusion framework. In addition, we compare three ablated variants in simulation: (1) PoCoDP3 (w/o PoseEst): replaces the pose features with ResNet-encoded tactile image features as the output of the pose-aware branch; (2) PoCoDP3 (w/o Attn): directly concatenates the encoded pose features with the point cloud features, without using the contact-driven dynamic modality fusion mechanism; and (3) PoCoDP3 (w/o Ref): uses standard diffusion policy instead of reference-guided one. We evaluate all variants based on inference time and success rate. -->
+          </p>
+          <p>
+            We select two state-of-the-art diffusion-based policies as baselines for comparison: (1) <a href="https://github.com/real-stanford/diffusion_policy" target="_blank" rel="noopener">Diffusion Policy</a> (DP), which generates actions conditioned on image observations; and (2) <a href="https://github.com/YanjieZe/3D-Diffusion-Policy" target="_blank" rel="noopener">DP3</a>, which replaces image inputs with point cloud observations. In addition, we compare four ablated or variant models in simulation: (1) PoCoDP3 (w/o PoseEst): replaces the pose features with ResNet-encoded tactile image features; (2) PoCoDP3 (w/o Attn): directly concatenates the pose and point cloud features without using the dynamic modality fusion mechanism; (3) PoCoDP3 (w/o Ref): uses the standard diffusion policy instead of reference-guided one; and (4) PoCoDP3 (FM): adopts  <a href="https://github.com/HRI-EU/flow_matching" target="_blank" rel="noopener">Flow-Matching</a> instead of diffusion for action generation. All variants are evaluated in terms of inference time and success rate.
           </p>
 
           <img id="model" src="static/images/Table1.png" width="70%" style="display:block; margin:0 auto;">
@@ -427,14 +430,15 @@
         <img id="model" src="static/images/real_world_task.png" width="100%">
         <div class="content has-text-justified">
           <p>
-            To confirm that PoCoDP3 performs well in real-world settings, two challenging contact-rich manipulation tasks requiring precise pose control were designed: <strong>wrench hanging</strong> and <strong>toothbrush insertion</strong>.
+
+            To confirm that PoCoDP3 performs well in real-world settings, three challenging contact-rich manipulation tasks requiring precise pose control were designed: <strong>wrench hanging (W-Hang)</strong>, <strong>toothbrush insertion (T-Ins)</strong> and <strong>plug insertion (P-Ins)</strong>.
           </p>
 
           <p>
             Each task involved both contact and non-contact phases, with the aim of evaluating the policy's capability to adapt to dynamic contact conditions and to robustly fuse visual and tactile inputs throughout the manipulation process.
           </p>
 
-          <img id="model" src="static/images/Table2.png" width="50%" style="display:block; margin:0 auto;">
+          <img id="model" src="static/images/Table2.png" width="70%" style="display:block; margin:0 auto;">
 
         </div>
       </div>
@@ -571,7 +575,72 @@
   </div>
 </section>
 
+<section class="section">
+  <div class="container is-max-desktop has-text-centered">
+    <h2 class="title is-4">Plug Insertion</h2>
+    
+    <div class="columns is-centered">
+      <!-- Visual Effects. -->
+      <div class="column">
+        <div class="content">
+          <h2 class="title is-5">Success Case</h2>
+          <!-- <p>
+            Using <i>nerfies</i> you can create fun visual effects. This Dolly zoom effect
+            would be impossible without nerfies since it would require going through a wall.
+          </p> -->
+          <video id="dollyzoom" autoplay controls muted loop playsinline height="100%">
+            <source src="./static/videos/plug_success.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+      </div>
+      <!--/ Visual Effects. -->
 
+      <!-- Matting. -->
+      <div class="column">
+        <h2 class="title is-5">Failure Case</h2>
+        <div class="columns is-centered">
+          <div class="column content">
+            <!-- <p>
+              As a byproduct of our method, we can also solve the matting problem by ignoring
+              samples that fall outside of a bounding box during rendering.
+            </p> -->
+            <video id="matting-video" controls playsinline height="100%">
+              <source src="./static/videos/plug_failure.mp4"
+                      type="video/mp4">
+            </video>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Matting. -->
+      <div class="column is-flex">
+        <div class="content is-flex is-flex-direction-column" style="height: 100%;">
+          <h2 class="title is-5">PC & Tactile Images</h2>
+          <div class="video-container" style="flex-grow: 1; display: flex; align-items: center;">
+            <video id="matting-video2" controls playsinline style="width: 100%; height: auto; max-height: 100%;">
+              <source src="./static/videos/plug_insertion_obs.mp4" type="video/mp4">
+            </video>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 新加的文字段落 -->
+    <!-- <div class="content has-text-justified">
+      <p>
+        <strong>Toothbrush Insertion</strong>: Use the robot to insert the toothbrush into its charging dock. The robot needs to (1)  <em>grasp</em> the toothbrush, (2)  <em>move</em> the tooth-brush toward the charging dock, (3)  <em>align</em> the toothbrush with the charging slot, and (4)  <em>insert</em> the toothbrush into the charging dock.
+      </p>
+    </div> -->
+    
+    <!-- <h2 class="title is-4">observation (Point Clouds & Tactile Images)</h2>
+    <video id="matting-video" controls playsinline class="small-video">
+              <source src="./static/videos/insertion_obs.mp4"
+                      type="video/mp4">
+    </video> -->
+    
+  </div>
+</section>
 
 
 <section class="section">
@@ -584,14 +653,23 @@
         <!-- <img id="model" src="static/images/real_world_task.png" width="100%"> -->
         <div class="content has-text-justified">
           <p>
-            We evaluate the performance of PoCoDP3 and PoCoDP3 (w/o Ref) under varying numbers of sampling steps on the Toolhang task.
+            We evaluate PoCoDP3, PoCoDP3 (w/o Ref) and PoCoDP3 (FM) under varying sampling steps on the Toolhang task
           </p>
 
           <p>
-            To gain further insight into how reference guidance affects the generation process and to facilitate visualization, we conduct experiments on the state-based Push-T task, originally proposed in <a href="https://github.com/real-stanford/diffusion_policy" target="_blank" rel="noopener">Diffusion Policy</a>, where the policy must push a T-shaped block into a designated target area.
+            To further investigate the impact of reference guidance on the generation process and multimodal behavior, we conduct experiments on the Push-T task proposed in <a href="https://github.com/real-stanford/diffusion_policy" target="_blank" rel="noopener">Diffusion Policy</a>.
           </p>
 
+
+
           <img id="model" src="static/images/res_dp_denoising.png" width="100%" style="display:block; margin:0 auto;">
+
+          <p>
+            Furthermore, we randomly generate 100 trajectories under the same observation. The results show that, due to its fully deterministic nature and the lack of intrinsic stochasticity during sampling, Flow Matching may exhibit reduced trajectory diversity. In contrast, the reference-guided DP maintains stronger deterministic prediction capability while still modeling multimodal action distributions, thereby achieving a favorable balance between determinism and diversity.
+          </p>
+
+          <img id="model" src="static/images/multimodal.png" width="100%" style="display:block; margin:0 auto;">
+
 
         </div>
       </div>
@@ -606,7 +684,7 @@
       <!-- Visual Effects. -->
       <div class="column">
         <div class="content">
-          <h2 class="title is-5">DDPM-100step</h2>
+          <h2 class="title is-5">DDPM-100 steps</h2>
           <!-- <p>
             Using <i>nerfies</i> you can create fun visual effects. This Dolly zoom effect
             would be impossible without nerfies since it would require going through a wall.
@@ -621,7 +699,7 @@
 
       <!-- Matting. -->
       <div class="column">
-        <h2 class="title is-5">DDIM-100step</h2>
+        <h2 class="title is-5">DDIM-100 steps</h2>
         <div class="columns is-centered">
           <div class="column content">
             <!-- <p>
@@ -639,7 +717,7 @@
       <!-- Matting. -->
       <div class="column is-flex">
         <div class="content is-flex is-flex-direction-column" style="height: 100%;">
-          <h2 class="title is-5">DDIM-2step</h2>
+          <h2 class="title is-5">DDIM-2 steps</h2>
           <div class="video-container" style="flex-grow: 1; display: flex; align-items: center;">
             <video id="matting-video2" controls playsinline style="width: 100%; height: auto; max-height: 100%;">
               <source src="./static/videos/refdp-ddim-2.mp4" type="video/mp4">
@@ -678,7 +756,7 @@
       <!-- Visual Effects. -->
       <div class="column">
         <div class="content">
-          <h2 class="title is-5">DDPM-100step</h2>
+          <h2 class="title is-5">DDPM-100 steps</h2>
           <!-- <p>
             Using <i>nerfies</i> you can create fun visual effects. This Dolly zoom effect
             would be impossible without nerfies since it would require going through a wall.
@@ -693,7 +771,7 @@
 
       <!-- Matting. -->
       <div class="column">
-        <h2 class="title is-5">DDIM-100step</h2>
+        <h2 class="title is-5">DDIM-100 steps</h2>
         <div class="columns is-centered">
           <div class="column content">
             <!-- <p>
@@ -711,10 +789,82 @@
       <!-- Matting. -->
       <div class="column is-flex">
         <div class="content is-flex is-flex-direction-column" style="height: 100%;">
-          <h2 class="title is-5">DDIM-2step</h2>
+          <h2 class="title is-5">DDIM-2 steps</h2>
           <div class="video-container" style="flex-grow: 1; display: flex; align-items: center;">
             <video id="matting-video2" controls playsinline style="width: 100%; height: auto; max-height: 100%;">
               <source src="./static/videos/dp-ddpm-2.mp4" type="video/mp4">
+            </video>
+          </div>
+        </div>
+      </div>
+    </div>
+    </div>
+    </div>
+
+    <!-- 新加的文字段落 -->
+    <!-- <div class="content has-text-justified">
+      <p>
+        <strong>Toothbrush Insertion</strong>: Use the robot to insert the toothbrush into its charging dock. The robot needs to (1)  <em>grasp</em> the toothbrush, (2)  <em>move</em> the tooth-brush toward the charging dock, (3)  <em>align</em> the toothbrush with the charging slot, and (4)  <em>insert</em> the toothbrush into the charging dock.
+      </p>
+    </div> -->
+    
+    <!-- <h2 class="title is-4">observation (Point Clouds & Tactile Images)</h2>
+    <video id="matting-video" controls playsinline class="small-video">
+              <source src="./static/videos/insertion_obs.mp4"
+                      type="video/mp4">
+    </video> -->
+    
+  </div>
+</section>
+
+<section class="section">
+  <div class="container is-max-desktop has-text-centered">
+    <h2 class="title is-4">Flow Matching</h2>
+    
+    
+    <div class="columns is-centered has-text-centered">
+    <div class="column is-four-fifths">
+    <div class="columns is-centered">
+      <!-- Visual Effects. -->
+      <div class="column">
+        <div class="content">
+          <h2 class="title is-5">100 steps</h2>
+          <!-- <p>
+            Using <i>nerfies</i> you can create fun visual effects. This Dolly zoom effect
+            would be impossible without nerfies since it would require going through a wall.
+          </p> -->
+          <video id="dollyzoom" autoplay controls muted loop playsinline height="100%">
+            <source src="./static/videos/fm-100.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+      </div>
+      <!--/ Visual Effects. -->
+
+      <!-- Matting. -->
+      <div class="column">
+        <h2 class="title is-5">10 steps</h2>
+        <div class="columns is-centered">
+          <div class="column content">
+            <!-- <p>
+              As a byproduct of our method, we can also solve the matting problem by ignoring
+              samples that fall outside of a bounding box during rendering.
+            </p> -->
+            <video id="matting-video" controls playsinline height="100%">
+              <source src="./static/videos/fm-10.mp4"
+                      type="video/mp4">
+            </video>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Matting. -->
+      <div class="column is-flex">
+        <div class="content is-flex is-flex-direction-column" style="height: 100%;">
+          <h2 class="title is-5">2 steps</h2>
+          <div class="video-container" style="flex-grow: 1; display: flex; align-items: center;">
+            <video id="matting-video2" controls playsinline style="width: 100%; height: auto; max-height: 100%;">
+              <source src="./static/videos/fm-2.mp4" type="video/mp4">
             </video>
           </div>
         </div>
