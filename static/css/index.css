@@ -45,6 +45,11 @@ body {
 }
 
 .publication-header .hero-body {
+  padding-bottom: 1rem;
+}
+
+.abstract-section {
+  padding-top: 1rem;
 }
 
 .publication-title {
